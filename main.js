@@ -7,6 +7,7 @@ let operators = document.querySelectorAll('.op');
 let clearBtn = document.getElementById('clear');
 let equalsBtn = document.getElementById('equals');
 let signBtn = document.getElementById('sign');
+let percentBtn = document.getElementById('percent');
 
 
 let currentNum = "";
@@ -17,7 +18,8 @@ let result = "";
 
 equalsBtn.addEventListener('click', getResult);
 clearBtn.addEventListener('click', clearDisplay);
-signBtn.addEventListener('click', changeSign)
+signBtn.addEventListener('click', changeSign);
+percentBtn.addEventListener('click', handlePercent);
 
 //clear all
 function clearDisplay(){
@@ -37,6 +39,16 @@ function changeSign(){
         currentDisplayNum.textContent = currentNum;
     } else {
         currentNum = currentNum - (currentNum * 2);
+        currentDisplayNum.textContent = currentNum;
+    }
+}
+
+function handlePercent(){
+    if (previousNum === ''){
+        currentNum = currentNum / 100;
+        currentDisplayNum.textContent = currentNum;
+    } else {
+        currentNum = (currentNum / 100) * previousNum;
         currentDisplayNum.textContent = currentNum;
     }
 }
@@ -66,6 +78,7 @@ operators.forEach(op =>{
 
 //change previous num, current num and display after clicking an operator
 function operate(op){
+    //check if there has already been an operation
     if(result !==  ''){
         operator = op;
         previousNum = result;
@@ -105,7 +118,7 @@ function getResult(){
         } else {
             result = previousNum / currentNum;
         }
-    }
+    } 
     previousDisplayNum.textContent = previousNum + operator + currentNum;
     currentDisplayNum.textContent = result;
 
