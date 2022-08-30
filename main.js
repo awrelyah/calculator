@@ -6,6 +6,8 @@ let operators = document.querySelectorAll('.op');
 
 let clearBtn = document.getElementById('clear');
 let equalsBtn = document.getElementById('equals');
+let signBtn = document.getElementById('sign');
+
 
 let currentNum = "";
 let previousNum = "";
@@ -15,6 +17,7 @@ let result = "";
 
 equalsBtn.addEventListener('click', getResult);
 clearBtn.addEventListener('click', clearDisplay);
+signBtn.addEventListener('click', changeSign)
 
 //clear all
 function clearDisplay(){
@@ -25,6 +28,17 @@ function clearDisplay(){
     currentDisplayNum.textContent = currentNum;
     previousDisplayNum.textContent = previousNum;
 
+}
+
+//change numbers between negative & positive
+function changeSign(){
+    if (currentNum === ''){
+        currentNum = '-';
+        currentDisplayNum.textContent = currentNum;
+    } else {
+        currentNum = currentNum - (currentNum * 2);
+        currentDisplayNum.textContent = currentNum;
+    }
 }
 
 //get clicked numbers
