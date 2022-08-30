@@ -62,10 +62,16 @@ numbers.forEach(el => {
 
 //add clicked numbers to display
 function changeNum(number){  
-        if(currentNum.length <= 12){
-            currentNum += number;
-            currentDisplayNum.textContent = currentNum;
-        }
+    if(currentNum.includes('.') && number === '.'){
+        currentNum = currentNum;
+        currentDisplayNum.textContent = currentNum;
+        return
+    };
+    
+    if(currentNum.length <= 12){
+        currentNum += number;
+        currentDisplayNum.textContent = currentNum;
+    };
 }
 
 //get clicked operator
